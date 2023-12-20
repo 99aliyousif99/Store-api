@@ -18,20 +18,7 @@ async function register(req, res) {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //register();
+  module.exports = {
+    register
+    };
+  

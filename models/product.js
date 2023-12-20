@@ -30,7 +30,7 @@ async function getproducts(req, res) {
   async function deleteproduct(req, res) {
     let id = req.params.id;
     const result = await client.query(`DELETE FROM products
-    WHERE id = 1
+    WHERE id = ${id}
     RETURNING *`);
     
     res.send(result.rows);
@@ -45,6 +45,9 @@ async function getproducts(req, res) {
   updateproduct,
   deleteproduct
   };
+
+
+  
   //addproduct();
   //getproducts();
   //updateproduct();
