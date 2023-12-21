@@ -9,20 +9,20 @@ async function getproducts(req, res) {
   }
 
   async function addproduct(req, res) {
-    //let {id, name, price,discount,image,active,expire } = req.body;
+    let {id, name, price,discount,image,active,expire } = req.body;
     const result = await client.query(`INSERT INTO products (id, name, price,discount,image,active,expire)
-    VALUES ('2', 'chocolate','3','0','imageUrl','yes','2024') RETURNING *`);
+    VALUES (${id} , ${name} ,${price} ,${discount} ,${image} ,${active} ,${expire} ) RETURNING *`);
     //res.send(result.rows);
     console.log(result.rows)
   }
 
 
   async function updateproduct(req, res) {
-    //let id = req.params.id;
-    //let { name, price,discount,image,active,expire } = req.body;
+    let id = req.params.id;
+    let { name, price,discount,image,active,expire } = req.body;
     const result = await client.query(`UPDATE products
-    SET name = 'caramel' , price = '5', discount = '0',image = 'imageurl',active = 'no',expire ='2024'
-    WHERE id = 1 RETURNING *`);
+    SET name = ${name} , price = ${price}, discount = ${discount},image = ${image},active = ${active},expire =${expire}
+    WHERE id = ${id} RETURNING *`);
     res.send(result.rows);
     //console.log(result.rows)
   }
